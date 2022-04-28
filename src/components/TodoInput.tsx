@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TextInput, TouchableOpacity, View, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 interface TodoInputProps {
@@ -10,10 +10,11 @@ export function TodoInput({ addTask }: TodoInputProps) {
   const [task, setTask] = useState('');
 
   function handleAddNewTask(text: string) {
-    if (text !== '') {
-      addTask(text);
-      setTask('')
-    }
+    if (text === '')
+      return Alert.alert('Preencha um valor válido!')
+
+    addTask(text);
+    setTask('');
   }
 
   return (
